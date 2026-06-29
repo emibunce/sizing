@@ -108,7 +108,7 @@
     <textarea class="code" id="code" rows="3" readonly></textarea>
     <div class="count" id="count"></div>
     <button class="copycode" id="copycode">Copy code</button>
-    <div class="note">Each nail reads <b>Width / Arch / Length</b>. Paste this into the <b>Custom measurements</b> box at checkout, and choose <b>Custom</b> for size. We take it from there.</div>
+    <div class="note"><b>Key:</b> T=thumb, I=index, M=middle, R=ring, P=pinky &middot; each reads <b>Width/Arch/Length</b> in mm. Paste this into the <b>Custom measurements</b> box at checkout, and choose <b>Custom</b> for size. We take it from there.</div>
   </div>
 </div>
 
@@ -116,6 +116,7 @@
 
 <script>
   var fingers = ["Thumb","Index","Middle","Ring","Pinky"];
+  var fingerKey = ["T","I","M","R","P"];
   function buildRows(containerId, side){
     var c = document.getElementById(containerId);
     fingers.forEach(function(f,i){
@@ -148,9 +149,9 @@
       var a = document.getElementById(side+"_a_"+i).value.trim();
       var l = document.getElementById(side+"_l_"+i).value.trim();
       if(w==="" || a==="" || l==="") return null;
-      parts.push(w+"/"+a+"/"+l);
+      parts.push(fingerKey[i]+w+"/"+a+"/"+l);
     }
-    return parts.join(",");
+    return parts.join(" ");
   }
 
   document.getElementById("generate").addEventListener("click", function(){
@@ -164,7 +165,7 @@
       return;
     }
     err.classList.remove("show");
-    var code = "L:"+L+" R:"+R;
+    var code = "L: "+L+" | R: "+R;
     var ta = document.getElementById("code");
     ta.value = code;
     var count = document.getElementById("count");
