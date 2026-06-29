@@ -6,13 +6,19 @@
 <title>Grimoire Glam — Nail Sizing</title>
 <style>
   :root{
-    --bg:#14101b; --panel:#1e1726; --panel2:#261d31;
-    --bone:#ece6da; --muted:#a99fb4; --gold:#c9a24b; --crimson:#8b2f3a;
-    --line:#352a44; --good:#3f8f5a;
+    --bg:#0d0d0d; --panel:#181818; --panel2:#212121;
+    --bone:#f5f5f5; --muted:#9a9a9a; --gold:#c8ccd2; --crimson:#9aa0a8;
+    --line:#2b2b2b; --good:#c8ccd2;
   }
   *{box-sizing:border-box}
   body{
-    margin:0; background:var(--bg); color:var(--bone);
+    margin:0; color:var(--bone);
+    background-color:#0d0d0d;
+    background-image:
+      linear-gradient(45deg, #1f1f1f 25%, transparent 25%, transparent 75%, #1f1f1f 75%),
+      linear-gradient(45deg, #1f1f1f 25%, transparent 25%, transparent 75%, #1f1f1f 75%);
+    background-size:54px 38px;
+    background-position:0 0, 27px 19px;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     line-height:1.5; padding:18px 12px 60px;
   }
@@ -23,7 +29,7 @@
     font-size:1.5rem; margin:.2em 0 .1em; text-transform:uppercase;
   }
   .tag{text-align:center;color:var(--gold);font-style:italic;font-size:.85rem;margin-bottom:1.2em;letter-spacing:.04em}
-  details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0 14px;margin-bottom:18px}
+  details{background:#050505;border:1px solid var(--line);border-radius:12px;padding:0 14px;margin-bottom:18px}
   summary{cursor:pointer;padding:14px 0;font-weight:600;color:var(--gold);list-style:none}
   summary::-webkit-details-marker{display:none}
   summary::after{content:"\25BE";float:right;color:var(--muted)}
@@ -31,14 +37,14 @@
   .howto{padding:0 0 14px;font-size:.9rem;color:var(--muted)}
   .howto b{color:var(--bone)}
   .howto p{margin:.5em 0}
-  .hand{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:18px}
+  .hand{background:#050505;border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:18px}
   .hand h2{font-family:Georgia,serif;font-size:1.05rem;margin:0 0 4px;letter-spacing:.05em;color:var(--gold)}
   .hand .sub{font-size:.78rem;color:var(--muted);margin-bottom:12px}
   .row{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;gap:6px;align-items:center;margin-bottom:8px}
   .row .finger{font-size:.86rem;color:var(--bone)}
   .field label{display:block;font-size:.58rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:2px}
   input[type=number]{
-    width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:8px;
+    width:100%;background:#050505;border:1px solid var(--line);border-radius:8px;
     color:var(--bone);padding:9px 6px;font-size:.95rem;-moz-appearance:textfield;
   }
   input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
@@ -48,7 +54,8 @@
   .copybtn{background:none;border:1px solid var(--line);color:var(--gold);border-radius:8px;padding:8px 12px;font-size:.78rem;cursor:pointer;margin-top:6px}
   .copybtn:active{background:var(--panel2)}
   .generate{
-    width:100%;background:var(--crimson);border:none;color:#fff;font-size:1.05rem;font-weight:600;
+    width:100%;background:linear-gradient(135deg,#e8eaed 0%,#b9bfc6 45%,#dde0e4 55%,#9aa0a8 100%);
+    border:none;color:#15171a;font-size:1.05rem;font-weight:700;
     padding:16px;border-radius:12px;cursor:pointer;letter-spacing:.03em;margin-top:4px;
   }
   .generate:active{filter:brightness(1.1)}
@@ -56,10 +63,10 @@
   .out.show{display:block}
   .out h3{margin:0 0 8px;font-family:Georgia,serif;color:var(--gold);font-size:1rem}
   .code{
-    width:100%;background:#0e0a14;border:1px solid var(--line);border-radius:8px;color:var(--bone);
+    width:100%;background:#000;border:1px solid var(--line);border-radius:8px;color:var(--bone);
     padding:12px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9rem;resize:none;
   }
-  .copycode{width:100%;background:var(--gold);color:#1a1320;border:none;border-radius:10px;padding:14px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:10px;letter-spacing:.03em}
+  .copycode{width:100%;background:#f5f5f5;color:#0d0d0d;border:none;border-radius:10px;padding:14px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:10px;letter-spacing:.03em}
   .copycode:active{filter:brightness(1.05)}
   .note{font-size:.82rem;color:var(--muted);margin-top:10px}
   .count{font-size:.72rem;color:var(--muted);margin-top:6px;text-align:right}
@@ -149,7 +156,7 @@
       var a = document.getElementById(side+"_a_"+i).value.trim();
       var l = document.getElementById(side+"_l_"+i).value.trim();
       if(w==="" || a==="" || l==="") return null;
-      parts.push(fingerKey[i]+w+"/"+a+"/"+l);
+      parts.push(fingerKey[i]+"("+w+"/"+a+"/"+l+")");
     }
     return parts.join(" ");
   }
