@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grimoire Glam — Nail Sizing</title>
+<style>
+  :root{
+    --bg:#14101b; --panel:#1e1726; --panel2:#261d31;
+    --bone:#ece6da; --muted:#a99fb4; --gold:#c9a24b; --crimson:#8b2f3a;
+    --line:#352a44; --good:#3f8f5a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--bone);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    line-height:1.5; padding:18px 14px 60px;
+  }
+  .wrap{max-width:540px;margin:0 auto}
+  h1{
+    font-family:Georgia,"Times New Roman",serif; font-weight:700;
+    letter-spacing:.06em; text-align:center; color:var(--bone);
+    font-size:1.5rem; margin:.2em 0 .1em; text-transform:uppercase;
+  }
+  .tag{text-align:center;color:var(--gold);font-style:italic;font-size:.85rem;margin-bottom:1.2em;letter-spacing:.04em}
+  details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0 14px;margin-bottom:18px}
+  summary{cursor:pointer;padding:14px 0;font-weight:600;color:var(--gold);list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"▾";float:right;color:var(--muted)}
+  details[open] summary::after{content:"▴"}
+  .howto{padding:0 0 14px;font-size:.9rem;color:var(--muted)}
+  .howto b{color:var(--bone)}
+  .howto p{margin:.5em 0}
+  .hand{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:18px}
+  .hand h2{font-family:Georgia,serif;font-size:1.05rem;margin:0 0 4px;letter-spacing:.05em;color:var(--gold)}
+  .hand .sub{font-size:.78rem;color:var(--muted);margin-bottom:12px}
+  .row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:center;margin-bottom:8px}
+  .row .finger{font-size:.9rem;color:var(--bone)}
+  .field label{display:block;font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:2px}
+  input[type=number]{
+    width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:8px;
+    color:var(--bone);padding:10px 8px;font-size:1rem;-moz-appearance:textfield;
+  }
+  input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  input:focus{outline:none;border-color:var(--gold)}
+  .head{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:6px}
+  .head span{font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .copybtn{background:none;border:1px solid var(--line);color:var(--gold);border-radius:8px;padding:8px 12px;font-size:.78rem;cursor:pointer;margin-top:6px}
+  .copybtn:active{background:var(--panel2)}
+  .generate{
+    width:100%;background:var(--crimson);border:none;color:#fff;font-size:1.05rem;font-weight:600;
+    padding:16px;border-radius:12px;cursor:pointer;letter-spacing:.03em;margin-top:4px;
+  }
+  .generate:active{filter:brightness(1.1)}
+  .out{margin-top:18px;background:var(--panel);border:1px solid var(--gold);border-radius:14px;padding:16px;display:none}
+  .out.show{display:block}
+  .out h3{margin:0 0 8px;font-family:Georgia,serif;color:var(--gold);font-size:1rem}
+  .code{
+    width:100%;background:#0e0a14;border:1px solid var(--line);border-radius:8px;color:var(--bone);
+    padding:12px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95rem;resize:none;
+  }
+  .copycode{width:100%;background:var(--gold);color:#1a1320;border:none;border-radius:10px;padding:14px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:10px;letter-spacing:.03em}
+  .copycode:active{filter:brightness(1.05)}
+  .note{font-size:.82rem;color:var(--muted);margin-top:10px}
+  .count{font-size:.72rem;color:var(--muted);margin-top:6px;text-align:right}
+  .err{color:#e0788a;font-size:.82rem;margin-top:8px;display:none}
+  .err.show{display:block}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--good);color:#fff;padding:10px 18px;border-radius:30px;font-size:.85rem;opacity:0;transition:opacity .25s;pointer-events:none}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Nail Sizing</h1>
+  <div class="tag">Measure once. Fits like it was cast for you.</div>
+
+  <details>
+    <summary>How to measure</summary>
+    <div class="howto">
+      <p>You'll enter two numbers per nail, in <b>millimeters (mm)</b>:</p>
+      <p><b>Width</b> — lay a soft tape (or tape + ruler) across the <b>widest</b> part of the nail, side wall to side wall.</p>
+      <p><b>Arch</b> — the measurement across the curved base of your nail where the press-on sits. <em>(Confirm this matches the exact arch method you instruct customers to use.)</em></p>
+      <p>No decimals — round to the nearest whole mm. When in doubt, size up. Do all ten, both hands; hands aren't always symmetrical.</p>
+    </div>
+  </details>
+
+  <div class="hand" id="leftHand">
+    <h2>Left Hand</h2>
+    <div class="sub">Thumb → Pinky</div>
+    <div class="head"><span>Finger</span><span>Width (mm)</span><span>Arch (mm)</span></div>
+    <div id="leftRows"></div>
+  </div>
+
+  <div class="hand" id="rightHand">
+    <h2>Right Hand</h2>
+    <div class="sub">Thumb → Pinky</div>
+    <button class="copybtn" id="copyLR">Copy Left → Right</button>
+    <div class="head" style="margin-top:10px"><span>Finger</span><span>Width (mm)</span><span>Arch (mm)</span></div>
+    <div id="rightRows"></div>
+  </div>
+
+  <button class="generate" id="generate">Generate my code</button>
+  <div class="err" id="err"></div>
+
+  <div class="out" id="out">
+    <h3>Your sizing code</h3>
+    <textarea class="code" id="code" rows="2" readonly></textarea>
+    <div class="count" id="count"></div>
+    <button class="copycode" id="copycode">Copy code</button>
+    <div class="note">Paste this into the <b>Custom measurements</b> box at checkout, and choose <b>Custom</b> for size. That's it — we take it from there.</div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Copied!</div>
+
+<script>
+  var fingers = ["Thumb","Index","Middle","Ring","Pinky"];
+  function buildRows(containerId, side){
+    var c = document.getElementById(containerId);
+    fingers.forEach(function(f,i){
+      var row = document.createElement("div");
+      row.className = "row";
+      row.innerHTML =
+        '<div class="finger">'+f+'</div>'+
+        '<div class="field"><input type="number" inputmode="decimal" min="1" max="30" id="'+side+'_w_'+i+'" placeholder="—"></div>'+
+        '<div class="field"><input type="number" inputmode="decimal" min="1" max="30" id="'+side+'_a_'+i+'" placeholder="—"></div>';
+      c.appendChild(row);
+    });
+  }
+  buildRows("leftRows","L");
+  buildRows("rightRows","R");
+
+  document.getElementById("copyLR").addEventListener("click", function(){
+    for(var i=0;i<5;i++){
+      document.getElementById("R_w_"+i).value = document.getElementById("L_w_"+i).value;
+      document.getElementById("R_a_"+i).value = document.getElementById("L_a_"+i).value;
+    }
+    showToast("Left copied to Right");
+  });
+
+  function readHand(side){
+    var parts = [];
+    for(var i=0;i<5;i++){
+      var w = document.getElementById(side+"_w_"+i).value.trim();
+      var a = document.getElementById(side+"_a_"+i).value.trim();
+      if(w==="") return null; // width required
+      parts.push(a==="" ? w : (w+"/"+a));
+    }
+    return parts.join(",");
+  }
+
+  document.getElementById("generate").addEventListener("click", function(){
+    var err = document.getElementById("err");
+    var L = readHand("L");
+    var R = readHand("R");
+    if(L===null || R===null){
+      err.textContent = "Please enter a Width for all ten nails (both hands). Arch is recommended for the best fit.";
+      err.classList.add("show");
+      document.getElementById("out").classList.remove("show");
+      return;
+    }
+    err.classList.remove("show");
+    var code = "L:"+L+" R:"+R;
+    var ta = document.getElementById("code");
+    ta.value = code;
+    var count = document.getElementById("count");
+    count.textContent = code.length + " / 140 characters";
+    count.style.color = code.length > 140 ? "#e0788a" : "var(--muted)";
+    document.getElementById("out").classList.add("show");
+    document.getElementById("out").scrollIntoView({behavior:"smooth",block:"start"});
+  });
+
+  document.getElementById("copycode").addEventListener("click", function(){
+    var ta = document.getElementById("code");
+    ta.select();
+    ta.setSelectionRange(0,99999);
+    try{
+      navigator.clipboard.writeText(ta.value).then(function(){showToast("Copied!");},function(){document.execCommand("copy");showToast("Copied!");});
+    }catch(e){ document.execCommand("copy"); showToast("Copied!"); }
+  });
+
+  function showToast(msg){
+    var t = document.getElementById("toast");
+    t.textContent = msg || "Copied!";
+    t.classList.add("show");
+    setTimeout(function(){t.classList.remove("show");},1600);
+  }
+</script>
+</body>
+</html>
